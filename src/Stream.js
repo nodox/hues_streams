@@ -39,19 +39,24 @@ class Stream extends Component {
 
 
 
-      <div className="Stream">
-        {this.state.videos.map(url =>
+      <div className="App Stream">
+        <div className="App-header">
+          <h2>Welcome to {this.state.name}</h2>
+        </div>
 
-          <div className="fb-video" data-href={url} data-width="500" data-show-text="false">
-            <div className="fb-xfbml-parse-ignore">
-              <blockquote cite={url}>
-                <a href={url}>How to Share With Just Friends</a>
-                <p>How to share with just friends.</p>
-                Posted by <a href="https://www.facebook.com/facebook/">Facebook</a> on Friday, December 5, 2014
-              </blockquote>
-            </div>
-          </div> 
-        )}
+          {this.state.videos.map(url =>
+
+            <div className="fb-video" data-href={url} data-width="500" data-show-text="false">
+              <div className="fb-xfbml-parse-ignore">
+                <blockquote cite={url}>
+                  <a href={url}>How to Share With Just Friends</a>
+                  <p>How to share with just friends.</p>
+                  Posted by <a href="https://www.facebook.com/facebook/">Facebook</a> on Friday, December 5, 2014
+                </blockquote>
+              </div>
+            </div> 
+          )}
+
       </div>
     );
   }

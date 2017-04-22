@@ -15,7 +15,7 @@ const streams = [
 		]
 	},
 	{
-		name: '#BallIsLife',
+		name: '#BallisLife',
 		videos: [
 			'https://www.facebook.com/nba/videos/10155091692968463/',
 			'https://www.facebook.com/nba/videos/10155091689243463/',
