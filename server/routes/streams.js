@@ -3,10 +3,6 @@ var router = express.Router();
 
 
 const streams = [
-	// {
-	// 	name: 'TYT',
-	// 	videos: []
-	// },
 	{
 		name: 'Cooking',
 		videos: [
@@ -28,6 +24,10 @@ const streams = [
 			'https://www.facebook.com/nba/videos/10155091681753463/'
 		]
 	},
+	// {
+	// 	name: 'TYT',
+	// 	videos: []
+	// },
 	// {
 	// 	name: 'You lift Bro?'
 	// 	videos: [
