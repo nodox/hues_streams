@@ -48,7 +48,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
 
-  res.status(200).send(req.params.id);
+	console.log('req.params');
+
+  res.status(200).send(streams[req.params.id]);
 });
 
 module.exports = router;

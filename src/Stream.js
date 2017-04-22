@@ -13,14 +13,15 @@ class Stream extends Component {
   }
 
   componentDidMount() {
-    axios.get('/streams')
+    axios.get('/stream/' + this.props.match.params.id.toString())
       .then(res => {
         // const posts = res.data.data.children.map(obj => obj.data);
         // this.setState({ posts });
-        const videos = res.data[0]["videos"];
-        const name = res.data[0]["name"];
+        const videos = res.data["videos"];
+        const name = res.data["name"];
 
-        console.log(res.data[0]);
+
+        console.log(res.data);
 
         this.setState({ videos });
         this.setState({ name });
@@ -39,8 +40,6 @@ class Stream extends Component {
 
 
       <div className="Stream">
-
-        {this.props.match.params.id}
         {this.state.videos.map(url =>
 
           <div className="fb-video" data-href={url} data-width="500" data-show-text="false">
