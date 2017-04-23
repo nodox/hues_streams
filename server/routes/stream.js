@@ -4,6 +4,7 @@ var router = express.Router();
 
 const streams = [
 	{
+		id: 0,
 		name: 'Cooking',
 		videos: [
 			'https://www.facebook.com/buzzfeedtasty/videos/1909250202660953/',
@@ -15,6 +16,7 @@ const streams = [
 		]
 	},
 	{
+		id: 1,
 		name: '#BallisLife',
 		videos: [
 			'https://www.facebook.com/nba/videos/10155091692968463/',

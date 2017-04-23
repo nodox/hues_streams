@@ -42,6 +42,7 @@ class Stream extends Component {
       <div className="App Stream">
         <div className="App-header">
           <h2>Welcome to {this.state.name}</h2>
+          <a href="/">Home</a>
         </div>
 
           {this.state.videos.map(url =>
@@ -49,9 +50,7 @@ class Stream extends Component {
             <div className="fb-video" data-href={url} data-width="500" data-show-text="false">
               <div className="fb-xfbml-parse-ignore">
                 <blockquote cite={url}>
-                  <a href={url}>How to Share With Just Friends</a>
-                  <p>How to share with just friends.</p>
-                  Posted by <a href="https://www.facebook.com/facebook/">Facebook</a> on Friday, December 5, 2014
+                  <p>Videos are loading. Please refresh after 60 secs if nothing shows</p>
                 </blockquote>
               </div>
             </div> 
