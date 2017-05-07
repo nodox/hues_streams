@@ -26,7 +26,7 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 // app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/stream', stream);
+app.use('/api/stream', stream);
 
 // Always return the main index.html, so react-router render the route in the client
 app.use('*', (req, res) => {

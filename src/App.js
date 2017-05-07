@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/stream')
+    axios.get('/api/stream')
       .then(res => {
         // const posts = res.data.data.children.map(obj => obj.data);
         // this.setState({ posts });
