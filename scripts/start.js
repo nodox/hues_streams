@@ -262,7 +262,7 @@ function runDevServer(host, port, protocol) {
     https: protocol === "https",
     host: host,
     proxy: {
-      "/api": "http://localhost:3005"
+      "/api/*": "http://localhost:3005"
     }
   });
 
