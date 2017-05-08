@@ -40,7 +40,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Hues</h2>
+          <h2>Welcome to Project Stream</h2>
           <p>Select a video stream to watch your favorite videos on the internet.</p>
         </div>
         <div>
