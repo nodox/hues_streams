@@ -25,7 +25,7 @@ export default class VideoPlayer extends Component {
 
     this.player.on('loadedmetadata', () => {
       // FIXME: Skip to the end of the first stock video. Loading straight from FB causes a media error.
-      if (this.state.currentVideoIdx == 0) {
+      if (this.state.currentVideoIdx === 0) {
         this.player.currentTime(45);
       }
 
@@ -33,7 +33,9 @@ export default class VideoPlayer extends Component {
 
     this.player.on('ended', () => {
 
-      var nextVideoIdx = (this.state.currentVideoIdx + 1) % this.props.streams.length;
+      var engine = random.engines.nativeMath;
+      var nextVideoIdx = random.integer(0, this.props.streams.length)(engine);
+      // var nextVideoIdx = (this.state.currentVideoIdx + 1) % this.props.streams.length;
       console.log(nextVideoIdx);
 
       this.player.src({
