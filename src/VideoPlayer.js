@@ -33,8 +33,14 @@ export default class VideoPlayer extends Component {
 
     this.player.on('ended', () => {
 
-      var engine = random.engines.nativeMath;
-      var nextVideoIdx = random.integer(0, this.props.streams.length)(engine);
+        var nextVideoIdx = (this.state.currentVideoIdx + 1) % this.props.streams.length;
+        
+        if (this.state.currentVideoIdx === 0) {
+          var engine = random.engines.nativeMath;
+          nextVideoIdx = random.integer(0, this.props.streams.length)(engine);  
+        }
+
+
       // var nextVideoIdx = (this.state.currentVideoIdx + 1) % this.props.streams.length;
       console.log(nextVideoIdx);
 
