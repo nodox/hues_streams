@@ -41,7 +41,7 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to Hues</h2>
-          <p>Select a channel to watch videos.</p>
+          <p>Select a video stream to watch your favorite videos on the internet.</p>
         </div>
         <div>
           <ul className="nav">

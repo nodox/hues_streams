@@ -1,5 +1,11 @@
+// Useful when customizing video player
+// https://github.com/videojs/video.js/blob/master/docs/guides/react.md
+// http://docs.videojs.com/tutorial-react.html
+
 import React, { Component } from 'react';
 import axios from 'axios';
+import VideoPlayer from './VideoPlayer';
+
 import './Stream.css';
 
 class Stream extends Component {
@@ -8,7 +14,8 @@ class Stream extends Component {
 
     this.state = {
       videos: [],
-      name: ''
+      name: null,
+      description: null
     };
   }
 
@@ -19,12 +26,13 @@ class Stream extends Component {
         // this.setState({ posts });
         const videos = res.data["videos"];
         const name = res.data["name"];
-
+        const description = res.data["description"];
 
         console.log(res.data);
 
         this.setState({ videos });
         this.setState({ name });
+        this.setState({ description });
       })
       .catch( err => {
         console.log(err);
@@ -34,27 +42,38 @@ class Stream extends Component {
   }
 
   render() {
+    const videoJsOptions = {
+      autoplay: true,
+      controls: true,
+      muted: false,
+      fluid: true,
+
+      // FIXME: Uses placeholder video as first source. Get straight from FB causes a media playback error.
+      sources: [{
+        src: '//vjs.zencdn.net/v/oceans.mp4',
+        // src: this.state.videos[0],
+        type: 'video/mp4'
+      }],
+      streams: this.state.videos
+
+
+    };
 
     return (
-
-
 
       <div className="App Stream">
         <div className="App-header">
           <h2>Welcome to {this.state.name}</h2>
-          <a href="/">Home</a>
+          <a className="homeBtn" href="/">Home</a>
         </div>
 
-          {this.state.videos.map(url =>
+        <div>
+          <p>{this.state.description}</p>
+        </div>
 
-            <div className="fb-video" data-href={url} data-width="500" data-show-text="false">
-              <div className="fb-xfbml-parse-ignore">
-                <blockquote cite={url}>
-                  <p>Videos are loading. Please refresh after 60 secs if nothing shows</p>
-                </blockquote>
-              </div>
-            </div> 
-          )}
+        <div>
+          <VideoPlayer { ...videoJsOptions } />
+        </div>
 
       </div>
     );
