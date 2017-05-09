@@ -50,8 +50,7 @@ class Stream extends Component {
 
       // FIXME: Uses placeholder video as first source. Get straight from FB causes a media playback error.
       sources: [{
-        src: '//vjs.zencdn.net/v/oceans.mp4',
-        // src: this.state.videos[0],
+        src: 'https://vjs.zencdn.net/v/oceans.mp4',
         type: 'video/mp4'
       }],
       streams: this.state.videos

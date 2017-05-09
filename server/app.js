@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var stream = require('./routes/stream');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/hues-stream'); // connect to our database
+
 var app = express();
 
 // view engine setup
