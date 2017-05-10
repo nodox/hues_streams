@@ -22,8 +22,6 @@ class Stream extends Component {
   componentDidMount() {
     axios.get('/api/stream/' + this.props.match.params.id.toString())
       .then(res => {
-        // const posts = res.data.data.children.map(obj => obj.data);
-        // this.setState({ posts });
         const videos = res.data["videos"];
         const name = res.data["name"];
         const description = res.data["description"];

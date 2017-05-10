@@ -4,12 +4,12 @@ var Video = require('../models/video');
 
 // FIXME: This will become a database model later on
 // FIXME: Sources can be tags as well; whatever works for queries
-const streams = [
+var streams = [
 	{
 		id: 0,
 		name: 'Natural and Curly Haircare',
 		description: 'The latest videos on the web for dealing with curly hair.',
-		sources: [''],
+		sources: ['haircare'],
 		videos: []
 
 	},
@@ -24,52 +24,54 @@ const streams = [
 		id: 2,
 		name: '#BallisLife',
 		description: 'Ball is life? Watch NBA updates all day long with these videos from the web.',
-		sources: ['nbatv'],
+		sources: ['sports'],
 		videos: []
 	},	
 	{
 		id: 3,
 		name: 'Cute animals',
 		description: 'Watch the cutest animals on the web!',
-		sources: ['bpanimals', 'amazingpandphanimals'],
+		sources: ['cute_animals'],
 		videos: []
 	},
 	{
 		id: 4,
-		name: 'African Haircare',
-		description: 'Trending videos on the internet for braiding African hair.',
-		sources: [],
+		name: 'The Young Turks',
+		description: 'A new form of internet journalism. Watch latest videos by The Young Turks',
+		sources: ['tyt'],
 		videos: []
 	},
 	{
 		id: 5,
-		name: 'The Young Turks',
-		description: 'A new form of internet journalism. Watch latest videos by The Young Turks',
-		sources: [],
+		name: 'Buzzfeed Videos For Days',
+		description: 'Trending Buzzfeed videos streaming to your device',
+		sources: ['buzzfeed'],
 		videos: []
 	},
 	{
 		id: 6,
-		name: 'Buzzfeed Videos For Days',
-		description: 'Trending Buzzfeed videos streaming to your device',
-		sources: [],
+		name: 'News for the Black Millennial',
+		description: 'Get the latest internet news updates for the Black community.',
+		sources: ['news'],
 		videos: []
 	},
 	{
 		id: 7,
-		name: 'News for the Black Millennial',
-		description: 'Get the latest internet news updates for the Black community.',
-		sources: [],
+		name: 'Memes Memes Memes',
+		description: 'The Memes never stop. Watch all the trending memes on the internet. Facts B.',
+		sources: ['nyc_memes'],
 		videos: []
 	},
 	{
 		id: 8,
-		name: 'Memes Memes Memes',
-		description: 'The Memes never stop. Watch all the trending memes on the internet. Facts B.',
-		sources: [],
+		name: 'Be Inspired, Get Motivated, Get Fit',
+		description: 'Success oriented, health conscious, motivational videos on the internet streaming all day.',
+		sources: ['inspirational', 'workout'],
 		videos: []
 	}
-]
+];
+
+
 
 router.get('/', function(req, res, next) {
   res.status(200).send(streams);

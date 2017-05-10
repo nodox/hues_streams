@@ -35,14 +35,14 @@ export default class VideoPlayer extends Component {
 
       var nextVideoIdx = (this.state.currentVideoIdx + 1) % this.props.streams.length;
       
-      // FIXME: Randomize with python or Javascript?
+      // FIXME: Randomize with python!
       // Pick a random video after the default plays and stream consecutively
-      if (this.state.currentVideoIdx === 0) {
-        var engine = random.engines.nativeMath;
-        nextVideoIdx = random.integer(0, this.props.streams.length)(engine);  
-      }
+      // if (this.state.currentVideoIdx === 0) {
+      //   var engine = random.engines.nativeMath;
+      //   nextVideoIdx = random.integer(0, this.props.streams.length)(engine);  
+      // }
 
-      console.log(nextVideoIdx);
+      // console.log(nextVideoIdx);
 
       this.player.src({
         type: "video/mp4",
