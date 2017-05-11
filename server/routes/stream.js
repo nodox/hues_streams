@@ -45,7 +45,7 @@ var streams = [
 		id: 5,
 		name: 'Buzzfeed Videos For Days',
 		description: 'Trending Buzzfeed videos streaming to your device',
-		sources: ['buzzfeed'],
+		sources: ['entertainment'],
 		videos: []
 	},
 	{
@@ -59,7 +59,7 @@ var streams = [
 		id: 7,
 		name: 'Memes Memes Memes',
 		description: 'The Memes never stop. Watch all the trending memes on the internet. Facts B.',
-		sources: ['nyc_memes'],
+		sources: ['meme', 'funny'],
 		videos: []
 	},
 	{
