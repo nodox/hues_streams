@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var VideoSchema = new Schema({
 	sourceName: String,
 	mediaSrc: String,
+	s3_url: String,
 	tags: [String],
 });
 

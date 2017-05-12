@@ -9,7 +9,7 @@ var streams = [
 		id: 0,
 		name: 'Natural and Curly Haircare',
 		description: 'The latest videos on the web for dealing with curly hair.',
-		sources: ['haircare'],
+		tags: ['haircare'],
 		videos: []
 
 	},
@@ -17,56 +17,56 @@ var streams = [
 		id: 1,
 		name: '2-Min Meals',
 		description: 'No time to cook? Get the latest internet cooking recipes in quick 2-min videos.',
-		sources: ['cooking'],
+		tags: ['cooking'],
 		videos: []
 	},
 	{
 		id: 2,
 		name: '#BallisLife',
 		description: 'Ball is life? Watch NBA updates all day long with these videos from the web.',
-		sources: ['sports'],
+		tags: ['sports'],
 		videos: []
 	},	
 	{
 		id: 3,
 		name: 'Cute animals',
 		description: 'Watch the cutest animals on the web!',
-		sources: ['cute_animals'],
+		tags: ['cute_animals'],
 		videos: []
 	},
 	{
 		id: 4,
 		name: 'The Young Turks',
 		description: 'A new form of internet journalism. Watch latest videos by The Young Turks',
-		sources: ['tyt'],
+		tags: ['tyt'],
 		videos: []
 	},
 	{
 		id: 5,
 		name: 'Buzzfeed Videos For Days',
 		description: 'Trending Buzzfeed videos streaming to your device',
-		sources: ['entertainment'],
+		tags: ['entertainment'],
 		videos: []
 	},
 	{
 		id: 6,
 		name: 'News for the Black Millennial',
 		description: 'Get the latest internet news updates for the Black community.',
-		sources: ['news'],
+		tags: ['news'],
 		videos: []
 	},
 	{
 		id: 7,
 		name: 'Memes Memes Memes',
 		description: 'The Memes never stop. Watch all the trending memes on the internet. Facts B.',
-		sources: ['meme', 'funny'],
+		tags: ['meme', 'funny'],
 		videos: []
 	},
 	{
 		id: 8,
 		name: 'Be Inspired, Get Motivated, Get Fit',
 		description: 'Success oriented, health conscious, motivational videos on the internet streaming all day.',
-		sources: ['inspirational', 'workout'],
+		tags: ['inspirational', 'workout'],
 		videos: []
 	}
 ];
@@ -81,10 +81,9 @@ router.get('/:id', function(req, res, next) {
 
 	const stream = streams[req.params.id];
 	var videos = [];
-	var cursor = Video.find({ tags: { $in: stream['sources'] } }).cursor();
+	var cursor = Video.find({ tags: { $in: stream['tags'] } }).cursor();
 	cursor.on('data', (doc) => {
-		// console.log(doc);
-		stream.videos.push(doc.mediaSrc);
+		stream.videos.push(doc.s3_url);
 	});
 
 	cursor.on('close', (doc) => {
