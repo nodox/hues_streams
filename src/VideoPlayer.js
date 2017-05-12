@@ -41,6 +41,7 @@ export default class VideoPlayer extends Component {
         nextVideoIdx = random.integer(0, this.props.streams.length)(engine);  
       }
 
+
       console.log(nextVideoIdx);
 
       this.player.src({

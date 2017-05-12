@@ -7,11 +7,10 @@ var Video = require('../models/video');
 var streams = [
 	{
 		id: 0,
-		name: 'Natural and Curly Haircare',
-		description: 'The latest videos on the web for dealing with curly hair.',
-		tags: ['haircare'],
+		name: 'Health and Fitness Gurus',
+		description: 'Learn from the best on how to get lean by working out.',
+		tags: ['workout'],
 		videos: []
-
 	},
 	{
 		id: 1,
@@ -64,11 +63,18 @@ var streams = [
 	},
 	{
 		id: 8,
-		name: 'Be Inspired, Get Motivated, Get Fit',
-		description: 'Success oriented, health conscious, motivational videos on the internet streaming all day.',
-		tags: ['inspirational', 'workout'],
+		name: 'Be Inspired, Get Motivated',
+		description: 'Motivational videos on the internet streaming all day.',
+		tags: ['inspirational'],
 		videos: []
-	}
+	},
+	// {
+	// 	id: 9,
+	// 	name: 'Natural and Curly Haircare',
+	// 	description: 'The latest videos on the web for dealing with curly hair.',
+	// 	tags: ['haircare'],
+	// 	videos: []
+	// },
 ];
 
 
