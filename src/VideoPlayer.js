@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import videojs from 'video.js';
 import random from 'random-js';
 
+
 export default class VideoPlayer extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +19,6 @@ export default class VideoPlayer extends Component {
     // instantiate video.js
     this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
       console.log('onPlayerReady', this);
-
     });
 
 

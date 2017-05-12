@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import VideoPlayer from './VideoPlayer';
+import shuffle from 'shuffle-array';
+
 
 import './Stream.css';
 
@@ -25,6 +27,7 @@ class Stream extends Component {
         const videos = res.data["videos"];
         const name = res.data["name"];
         const description = res.data["description"];
+        shuffle(videos);
 
         console.log(res.data);
 
