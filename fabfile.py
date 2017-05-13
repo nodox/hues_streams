@@ -30,6 +30,7 @@ def restart_app():
 def deploy():
   with cd('hues_streams'):
     sudo('git pull')
+    sudo('npm install')
     sudo('npm run build')
 
 
