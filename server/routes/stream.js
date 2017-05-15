@@ -61,22 +61,15 @@ var streams = [
     tags: ['meme', 'funny'],
     videos: []
   },
-  {
-    id: 8,
-    name: 'Be Inspired, Get Motivated',
-    description: 'Motivational videos on the internet streaming all day.',
-    tags: ['inspirational'],
-    videos: []
-  },
   // {
-  //  id: 9,
+  //  id: 8,
   //  name: 'Natural and Curly Haircare',
   //  description: 'The latest videos on the web for dealing with curly hair.',
   //  tags: ['haircare'],
   //  videos: []
   // },
   // {
-  //   id: 0,
+  //   id: 9,
   //   name: 'Health and Fitness Gurus',
   //   description: 'Learn from the best on how to get lean by working out.',
   //   tags: ['workout'],
