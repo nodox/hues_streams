@@ -36,10 +36,10 @@ export default class VideoPlayer extends Component {
       
       // FIXME: Randomize live
       // Pick a random video after the default plays and stream consecutively
-      if (this.state.currentVideoIdx === 0) {
-        var engine = random.engines.nativeMath;
-        nextVideoIdx = random.integer(0, this.props.streams.length)(engine);  
-      }
+      // if (this.state.currentVideoIdx === 0) {
+      //   var engine = random.engines.nativeMath;
+      //   nextVideoIdx = random.integer(0, this.props.streams.length)(engine);  
+      // }
 
 
       console.log(nextVideoIdx);
