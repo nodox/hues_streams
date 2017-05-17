@@ -1,0 +1,41 @@
+.category-tile {
+  border: 1px solid rgba(150,150,150, 0.313);
+  color: #000;
+  text-decoration: none;
+  transition-duration: 200ms;
+  transition-property: transform, border, box-shadow, margin, opacity, width;
+  /*  display: inline-block;*/
+  cursor: pointer;
+  /*align-items: center; */
+
+  /* flex-basis: 100%; */
+  flex: 0 0 300px; /* grows but does not center */
+  /*  align-self: flex-end;*/
+  /*  max-width: 80%;*/
+  min-height: 10rem;
+  margin: 5px;
+  background: white;
+  position: relative;
+
+
+}
+
+.category-title > span {
+  display: inline-block;
+  background-color: #fff;
+  /*width: 95%;*/
+  color: black
+}
+
+.category-tile:hover {
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1), 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-color: rgba(150,150,150,1);
+  /*background-image: url('./assets/dog.jpg');*/
+}
+
+
+.category-title {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+}

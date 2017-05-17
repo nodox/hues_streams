@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
+import Tile from './Tile';
 
 
 
@@ -38,18 +39,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
+        <div className="header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to Project Stream</h2>
           <p>Select a video stream to watch your favorite videos on the internet.</p>
         </div>
-        <div>
-          <ul className="nav">
-            {this.state.channels.map(obj => {
-                console.log(obj);
-              return <li key={obj.id.toString()}><a href={"/channel/"+obj.id.toString()}>{obj.name}</a></li>
-            })}
-          </ul>
+        <div className="category-tiles">
+          {this.state.channels.map(obj => {
+            return <Tile key={obj.id.toString()} url={"/channel/"+obj.id.toString()} title={obj.name} />
+          })}
         </div>
       </div>
     );
