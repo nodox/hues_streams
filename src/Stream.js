@@ -63,7 +63,7 @@ class Stream extends Component {
 
     return (
 
-      <div className="App">
+      <div className="video-app">
         <div className="header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to {this.state.name}</h2>
@@ -71,19 +71,17 @@ class Stream extends Component {
           <a className="homeBtn" href="/">Home</a>
         </div>
 
-        <div className="viewbox">
-          <div className="dashboard-stream">
-            <div className="container-player-chat">
-              <div className="video-player">
-                <VideoPlayer { ...videoJsOptions } />
-              </div>
-              <div className="video-chatbox">
-                Chatbox
-              </div>            
-            </div>        
-            <div className="video-playlist">
-              Playlist
+        <div className="view-main">
+          <div className="container-player-chat">
+            <div className="video-player">
+              Video
             </div>
+            <div className="video-chatbox">
+              Chatbox
+            </div>            
+          </div>        
+          <div className="video-playlist">
+            Playlist
           </div>
         </div>
 

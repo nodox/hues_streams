@@ -2,30 +2,29 @@
   color: #fff;
 }
 
-.view-main {
-  position: relative;
-}
 
-.viewbox {
-/*  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;*/
-  /*height: 100%;*/
-    border: 1px solid green;
-}
 
-.dashboard-stream {
+.video-app {
   display: flex;
   flex-direction: column;
-/*  position: absolute;
-  width: 100%;*/
-  border: 1px solid green;
+  /*align-items: stretch;*/
+  height: 100vh;
 
 }
+
+.header {
+  /*flex: 1 100%;*/
+  text-align: center;
+}
+
+.view-main {
+  flex: 1;
+/*  display: flex;
+  align-items: stretch;*/
+/*  height: 100vh;*/
+  border: 1px solid blue;
+}
+
 
 .container-player-chat {
   display: flex;
@@ -35,10 +34,6 @@
 
 
 .video-player {
-/*  position: absolute;
-  left: 0;
-  top: 0;*/
-/*  height: 400px;*/
   height: 100%;
   width: 100%;
   border: 1px solid red;
