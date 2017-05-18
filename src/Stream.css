@@ -1,3 +1,58 @@
 .homeBtn {
-	color: #fff;
+  color: #fff;
+}
+
+.view-main {
+  position: relative;
+}
+
+.viewbox {
+/*  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;*/
+  /*height: 100%;*/
+    border: 1px solid green;
+}
+
+.dashboard-stream {
+  display: flex;
+  flex-direction: column;
+/*  position: absolute;
+  width: 100%;*/
+  border: 1px solid green;
+
+}
+
+.container-player-chat {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+
+.video-player {
+/*  position: absolute;
+  left: 0;
+  top: 0;*/
+/*  height: 400px;*/
+  height: 100%;
+  width: 100%;
+  border: 1px solid red;
+}
+
+.video-chatbox {
+  flex: 0 1 40%;
+  border: 1px solid red;
+
+}
+
+.video-playlist {
+  /*flex: 1 1 100px;*/
+  border: 1px solid red;
+
+
 }

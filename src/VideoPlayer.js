@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import videojs from 'video.js';
 import random from 'random-js';
+import './VideoPlayer.css';
 
 
 export default class VideoPlayer extends Component {
@@ -67,8 +68,8 @@ export default class VideoPlayer extends Component {
   // see https://github.com/videojs/video.js/pull/3856
   render() {
     return (
-      <div data-vjs-player>
-        <video ref={ node => this.videoNode = node } className="video-js"></video>
+      <div data-vjs-player className="video-js vjs-big-play-centered">
+        <video ref={ node => this.videoNode = node } className=""></video>
       </div>
     )
   }
