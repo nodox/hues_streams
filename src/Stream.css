@@ -33,6 +33,7 @@
 
 
 .video-player {
+  position: relative;
   flex: 1;
   border: 1px solid red;
 }

@@ -48,7 +48,7 @@ class Stream extends Component {
       autoplay: false,
       controls: true,
       muted: true,
-      fluid: true,
+      fluid: false,
 
       // FIXME: Uses placeholder video as first source. Get straight from FB causes a media playback error.
       sources: [{
@@ -74,7 +74,7 @@ class Stream extends Component {
         <div className="view-main">
           <div className="container-player-chat">
             <div className="video-player">
-              Video
+              <VideoPlayer {...videoJsOptions} />
             </div>
             <div className="video-chatbox">
               Chatbox
