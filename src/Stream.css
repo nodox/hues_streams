@@ -19,35 +19,30 @@
 
 .view-main {
   flex: 1;
-/*  display: flex;
-  align-items: stretch;*/
-/*  height: 100vh;*/
+  display: flex;
+  flex-direction: column;
   border: 1px solid blue;
 }
 
 
 .container-player-chat {
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex: 1;
+  border: 5px solid pink;
 }
 
 
 .video-player {
-  height: 100%;
-  width: 100%;
+  flex: 1;
   border: 1px solid red;
 }
 
 .video-chatbox {
-  flex: 0 1 40%;
+  flex: 0 1 30%;
   border: 1px solid red;
-
 }
 
 .video-playlist {
-  /*flex: 1 1 100px;*/
+  flex: 0 1 20%;
   border: 1px solid red;
-
-
 }
