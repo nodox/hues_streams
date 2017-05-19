@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import videojs from 'video.js';
-import random from 'random-js';
+// import random from 'random-js';
 import './VideoPlayer.css';
 
 
@@ -10,7 +10,6 @@ export default class VideoPlayer extends Component {
 
     this.state = {
       currentVideoIdx: 0,
-
     };
 
   }
@@ -19,7 +18,7 @@ export default class VideoPlayer extends Component {
   componentDidMount() {
     // instantiate video.js
     this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
-      console.log('onPlayerReady', this);
+      console.log('onPlayerReady',);
     });
 
 
@@ -42,9 +41,6 @@ export default class VideoPlayer extends Component {
       //   nextVideoIdx = random.integer(0, this.props.streams.length)(engine);  
       // }
 
-
-      console.log(nextVideoIdx);
-
       this.player.src({
         type: "video/mp4",
         src: this.props.streams[nextVideoIdx]
@@ -53,6 +49,11 @@ export default class VideoPlayer extends Component {
       this.setState({ currentVideoIdx: nextVideoIdx });
 
     });
+
+
+    // console.log(this.videoNode.parentNode.appendChild());
+
+
  
   }
 
@@ -63,13 +64,22 @@ export default class VideoPlayer extends Component {
     }
   }
 
+  _skipToNextVideo(e) {
+    e.preventDefault();
+
+    console.log('bruh');
+  }
+
   // wrap the player in a div with a `data-vjs-player` attribute
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
   render() {
     return (
       <div data-vjs-player className="video-js vjs-big-play-centered">
+        <a onClick={this._skipToNextVideo}><i className="fa fa-chevron-right fa-3x nextVideo"></i></a>
         <video ref={ node => this.videoNode = node } className=""></video>
+        <a onClick={this._skipToNextVideo}><i className="fa fa-chevron-left fa-3x lastVideo"></i></a>
+
       </div>
     )
   }
