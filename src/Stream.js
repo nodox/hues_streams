@@ -7,7 +7,7 @@ import axios from 'axios';
 import VideoPlayer from './VideoPlayer';
 import shuffle from 'shuffle-array';
 import logo from './logo.svg';
-
+import Track from './Track';
 
 import './Stream.css';
 
@@ -18,7 +18,8 @@ class Stream extends Component {
     this.state = {
       videos: [],
       name: null,
-      description: null
+      description: null,
+      playlist: ['aaa', 'bbb', 'ccc', 'ddd', 'eee']
     };
   }
 
@@ -81,7 +82,11 @@ class Stream extends Component {
             </div>            
           </div>        
           <div className="video-playlist">
-            Playlist
+            <div className="tracklist">
+              {this.state.playlist.map(obj => {
+                return <Track tracks={this.state.playlist} />
+              })}
+            </div>
           </div>
         </div>
 
