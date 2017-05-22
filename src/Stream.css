@@ -1,3 +1,59 @@
 .homeBtn {
-	color: #fff;
+  color: #fff;
+}
+
+
+
+.video-app {
+  display: flex;
+  flex-direction: column;
+  /*align-items: stretch;*/
+  height: 100vh;
+  align-content: stretch;
+  
+
+}
+
+.header {
+  /*flex: 1 100%;*/
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.view-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /*border: 1px solid blue;*/
+}
+
+
+.container-player-chat {
+  display: flex;
+  flex: 1;
+  border: 5px solid pink;
+}
+
+
+.video-player {
+  position: relative;
+  flex: 1;
+  border: 1px solid red;
+}
+
+.video-chatbox {
+  flex: 0 0 30%;
+  border: 1px solid red;
+}
+
+.video-playlist {
+  /*flex: 0 40px;*/
+  border: 1px solid red;
+}
+
+.tracklist {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+
 }

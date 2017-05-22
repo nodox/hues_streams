@@ -1,0 +1,27 @@
+.video-js {
+  height: 100%;
+  width: 100%;
+}
+
+.nextVideo,
+.prevVideo {
+  display: block;
+  opacity: 0.4;
+  top: 50%;
+  position: absolute;
+
+  height: 30px;
+  width: 18px;
+  z-index: 2;
+
+  cursor: pointer;
+  transition: opacity .35s cubic-bezier(.23, 1, .32, 1);
+}
+
+.nextVideo {
+  right: 2%;
+}
+
+.prevVideo {
+  left: 2%;
+}

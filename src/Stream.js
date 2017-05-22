@@ -6,7 +6,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import VideoPlayer from './VideoPlayer';
 import shuffle from 'shuffle-array';
-
+import logo from './logo.svg';
+import Track from './Track';
 
 import './Stream.css';
 
@@ -17,7 +18,8 @@ class Stream extends Component {
     this.state = {
       videos: [],
       name: null,
-      description: null
+      description: null,
+      playlist: ['aaa', 'bbb', 'ccc', 'ddd', 'eee']
     };
   }
 
@@ -29,7 +31,7 @@ class Stream extends Component {
         const description = res.data["description"];
         shuffle(videos);
 
-        console.log(res.data);
+        // console.log(res.data);
 
         this.setState({ videos });
         this.setState({ name });
@@ -46,8 +48,8 @@ class Stream extends Component {
     const videoJsOptions = {
       autoplay: true,
       controls: true,
-      muted: false,
-      fluid: true,
+      muted: true,
+      fluid: false,
 
       // FIXME: Uses placeholder video as first source. Get straight from FB causes a media playback error.
       sources: [{
@@ -62,18 +64,16 @@ class Stream extends Component {
 
     return (
 
-      <div className="App Stream">
-        <div className="App-header">
+      <div className="video-app">
+        <div className="header">
+          <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to {this.state.name}</h2>
+          <p>{this.state.description}</p>
           <a className="homeBtn" href="/">Home</a>
         </div>
 
-        <div>
-          <p>{this.state.description}</p>
-        </div>
-
-        <div>
-          <VideoPlayer { ...videoJsOptions } />
+        <div className="view-main">
+          <VideoPlayer {...videoJsOptions} />     
         </div>
 
       </div>
