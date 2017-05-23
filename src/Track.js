@@ -18,17 +18,34 @@ class Track extends Component {
     //   description: null,
     //   playlist: ['aaa', 'bbb', 'ccc', 'ddd', 'eee']
     // };
+
+    this._setPoster = this._setPoster.bind(this);
   }
 
-  componentDidMount() {  }
+  componentDidMount() { 
+    this._setPoster();
+  }
+
+  componentWillMount() {
+
+  }
+
+
+  _setPoster() {
+
+
+    // this.trackPoster.style.backgroundImage = `url(${this.props.poster})`;
+    // console.log(this.trackPoster.style.backgroundImage);
+  }
 
   render() {
 
 
     return (
-      <a className="track" href="">
+      <a className="track">
         <span className="">
-          <div className="track-img"></div>
+
+          <img src={this.props.poster} className="img-responsive"></img>
         </span>
       </a>
     );
