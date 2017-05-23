@@ -7,7 +7,6 @@ import axios from 'axios';
 import VideoPlayer from './VideoPlayer';
 import shuffle from 'shuffle-array';
 import logo from './logo.svg';
-import Track from './Track';
 
 import './Stream.css';
 
@@ -94,12 +93,21 @@ class Stream extends Component {
 
         <nav ref={node => this.sidenav = node} id="mySidenav" className="sidenav nav flex-column">
           <h2 className="">Up next</h2>
-            <a className="closebtn" onClick={this._close}>&times;</a>
-            <a className="" href="#">Data Management</a>
-            <a className="" href="#">Location</a>
-            <a className="" href="#">Study</a>
-            <a className="" href="#">Collections</a>
-            <a className="" href="#">Credits</a>
+          <a className="closebtn" onClick={this._close}>&times;</a>
+          <div className="menuContainer">
+            <a className="" href="#">
+              <img className="scaledImageFitWidth" src={this.state.sample.poster}></img>
+              <p>{this.state.sample.title}</p>
+            </a>
+            <a className="" href="#">
+              <img className="scaledImageFitWidth" src={this.state.sample.poster}></img>
+              <p>{this.state.sample.title}</p>
+            </a>
+            <a className="" href="#">
+              <img className="scaledImageFitWidth" src={this.state.sample.poster}></img>
+              <p>{this.state.sample.title}</p>
+            </a>
+          </div>
         </nav>
 
          <div className="view-main">

@@ -68,6 +68,16 @@
 }
 
 
+.scaledImageFitWidth {
+  height: auto;
+  min-height: initial;
+  width: 50%;
+}
+
+.menuContainer {
+  overflow-y: scroll; /* Disable horizontal scroll */
+
+}
 
 .sidenav {
   text-align: center;
