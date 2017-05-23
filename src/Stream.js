@@ -63,7 +63,6 @@ class Stream extends Component {
     this.sidenav.style.width = "0";
   }
 
-
   render() {
     const videoJsOptions = {
       autoplay: true,
@@ -81,6 +80,7 @@ class Stream extends Component {
 
     };
 
+
     return (
 
       <div className="video-app">
@@ -95,18 +95,14 @@ class Stream extends Component {
           <h2 className="">Up next</h2>
           <a className="closebtn" onClick={this._close}>&times;</a>
           <div className="menuContainer">
-            <a className="" href="#">
-              <img className="scaledImageFitWidth" src={this.state.sample.poster}></img>
-              <p>{this.state.sample.title}</p>
-            </a>
-            <a className="" href="#">
-              <img className="scaledImageFitWidth" src={this.state.sample.poster}></img>
-              <p>{this.state.sample.title}</p>
-            </a>
-            <a className="" href="#">
-              <img className="scaledImageFitWidth" src={this.state.sample.poster}></img>
-              <p>{this.state.sample.title}</p>
-            </a>
+            {this.state.playlist.map(obj => {
+              return (
+                <a className="" href="#">
+                  <img className="scaledImageFitWidth" src={this.state.sample.poster}></img>
+                  <p>{this.state.sample.title}</p>
+                </a>
+              )
+            })}
           </div>
         </nav>
 
