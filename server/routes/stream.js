@@ -89,7 +89,7 @@ router.get('/:id', function(req, res, next) {
   var videos = [];
   var cursor = Video.find({ tags: { $in: stream['tags'] } }).cursor();
   cursor.on('data', (doc) => {
-    stream.videos.push(doc.s3_url);
+    stream.videos.push(doc);
   });
 
   cursor.on('close', (doc) => { 

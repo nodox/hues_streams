@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import VideoPlayer from './VideoPlayer';
-import shuffle from 'shuffle-array';
+// import shuffle from 'shuffle-array';
 import logo from './logo.svg';
 
 import './Stream.css';
@@ -18,16 +18,12 @@ class Stream extends Component {
       videos: [],
       name: null,
       description: null,
-      playlist: ['aaa', 'bbb', 'ccc', 'ddd', 'eee'],
-      sample: {
-        poster: 'https://scontent-ord1-1.xx.fbcdn.net/v/t15.0-10/cp0/e15/q65/c88.0.224.224/p75x225/18619259_10154663022924205_3527330651634139136_n.jpg?efg=eyJpIjoidCJ9&oh=024af54f75501908af856d51f91d35ac&oe=59AEB0C1',
-        src: "https://scontent-ord1-1.xx.fbcdn.net/v/t15.0-10/p75x225/18619259_10154663022924205_3527330651634139136_n.jpg?oh=659fa547ae8113ce66140b23a014db82&oe=59AD9E93",
-        title: 'Seth Rich "Investigator" Rod Wheeler Exposed As A Fraud'
-      }
+      currentVideoIndx: 0
     };
 
     this._open = this._open.bind(this);
     this._close = this._close.bind(this);
+    this._updateVideoSrc = this._updateVideoSrc.bind(this);
   }
 
   componentDidMount() {
@@ -36,9 +32,8 @@ class Stream extends Component {
         const videos = res.data["videos"];
         const name = res.data["name"];
         const description = res.data["description"];
-        shuffle(videos);
 
-        // console.log(res.data);
+        console.log(res.data);
 
         this.setState({ videos });
         this.setState({ name });
@@ -48,20 +43,23 @@ class Stream extends Component {
         console.log(err);
       });
 
-
   }
 
 
   _open() {
-
-    console.log(this.sidenav);
     this.sidenav.style.width = "300px";
-
   }
 
   _close() {
     this.sidenav.style.width = "0";
   }
+
+
+  _updateVideoSrc(e, videoIndex) {
+    e.preventDefault();
+    this.setState({ currentVideoIndx: videoIndex });
+  }
+
 
   render() {
     const videoJsOptions = {
@@ -77,6 +75,7 @@ class Stream extends Component {
         type: 'video/mp4'
       }],
       streams: this.state.videos,
+      currentVideoIndx: this.state.currentVideoIndx,
 
     };
 
@@ -95,11 +94,11 @@ class Stream extends Component {
           <h2 className="">Up next</h2>
           <a className="closebtn" onClick={this._close}>&times;</a>
           <div className="menuContainer">
-            {this.state.playlist.map(obj => {
+            {this.state.videos.map((obj, index) => {
               return (
-                <a className="" href="#">
-                  <img className="scaledImageFitWidth" src={this.state.sample.poster}></img>
-                  <p>{this.state.sample.title}</p>
+                <a className="" href="#" onClick={(e) => this._updateVideoSrc(e, index)}>
+                  <img className="scaledImageFitWidth" src={obj.poster} alt={obj.title}></img>
+                  <p>{obj.title} | {obj.videoLength}</p>
                 </a>
               )
             })}
