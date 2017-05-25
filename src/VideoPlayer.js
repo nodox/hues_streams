@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import videojs from 'video.js';
-// import random from 'random-js';
 import './VideoPlayer.css';
 
 
@@ -9,7 +8,7 @@ export default class VideoPlayer extends Component {
     super(props);
 
     this.state = {
-      currentVideoIdx: 0,
+      currentVideoIdx: this.props.currentVideoIndx,
     };
 
 
@@ -29,37 +28,45 @@ export default class VideoPlayer extends Component {
 
     this.player.on('loadedmetadata', () => {
       // FIXME: Skip to the end of the first stock video. Loading straight from FB causes a media error.
-      if (this.state.currentVideoIdx === 0) {
-        this.player.currentTime(46);
-      }
+      // if (this.state.currentVideoIdx === 0) {
+      //   this.player.currentTime(46);
+      // }
 
     })
 
     this.player.on('ended', () => {
+      // console.log('Ended state props', this.state.currentVideoIdx);
 
       var nextVideoIdx = (this.state.currentVideoIdx + 1) % this.props.streams.length;
       
-      // FIXME: Randomize live
-      // Pick a random video after the default plays and stream consecutively
-      // if (this.state.currentVideoIdx === 0) {
-      //   var engine = random.engines.nativeMath;
-      //   nextVideoIdx = random.integer(0, this.props.streams.length)(engine);  
-      // }
-
       this.player.src({
         type: "video/mp4",
-        src: this.props.streams[nextVideoIdx]
+        src: this.props.streams[nextVideoIdx].videoSrcUrl
       });
 
       this.setState({ currentVideoIdx: nextVideoIdx });
 
     });
-
-    // console.log(this.videoNode.parentNode.appendChild());
-
-
  
   }
+
+
+  // _updateCurrentVideoSrc() {}
+
+  componentWillReceiveProps(nextProps) {
+    // console.log('Next props', nextProps.currentVideoIndx);
+
+
+    this.player.src({
+      type: "video/mp4",
+      src: nextProps.streams[nextProps.currentVideoIndx].videoSrcUrl
+    }); 
+    this.setState({ currentVideoIdx: nextProps.currentVideoIndx });
+  }
+
+  // componentWillUpdate(){}
+  // componentDidUpdate(){}
+
 
   // destroy player on unmount
   componentWillUnmount() {
@@ -70,10 +77,11 @@ export default class VideoPlayer extends Component {
 
 
 
+
   _skipToPreviousVideo(e) {
     e.preventDefault();
 
-    console.log(this.state.currentVideoIdx);
+    // console.log(this.state.currentVideoIdx);
 
     if (this.state.currentVideoIdx === 1) {
       return;
@@ -82,7 +90,7 @@ export default class VideoPlayer extends Component {
     var nextVideoIdx = (this.state.currentVideoIdx - 1) % this.props.streams.length;
     this.player.src({
       type: "video/mp4",
-      src: this.props.streams[nextVideoIdx]
+      src: this.props.streams[nextVideoIdx].videoSrcUrl
     });
     this.setState({ currentVideoIdx: nextVideoIdx });
 
@@ -94,7 +102,7 @@ export default class VideoPlayer extends Component {
     var nextVideoIdx = (this.state.currentVideoIdx + 1) % this.props.streams.length;
     this.player.src({
       type: "video/mp4",
-      src: this.props.streams[nextVideoIdx]
+      src: this.props.streams[nextVideoIdx].videoSrcUrl
     });
     this.setState({ currentVideoIdx: nextVideoIdx });
 
@@ -109,7 +117,6 @@ export default class VideoPlayer extends Component {
         <a onClick={this._skipToNextVideo}><i className="fa fa-chevron-right fa-3x nextVideo"></i></a>
         <video ref={ node => this.videoNode = node } className=""></video>
         <a onClick={this._skipToPreviousVideo}><i className="fa fa-chevron-left fa-3x prevVideo"></i></a>
-
       </div>
     )
   }
