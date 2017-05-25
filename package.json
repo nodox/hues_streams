@@ -17,7 +17,6 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "serve-favicon": "~2.3.2",
-    "shuffle-array": "^1.0.1",
     "video.js": "^5.19.2"
   },
   "devDependencies": {

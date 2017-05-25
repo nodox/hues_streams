@@ -5,9 +5,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import VideoPlayer from './VideoPlayer';
-import shuffle from 'shuffle-array';
+// import shuffle from 'shuffle-array';
 import logo from './logo.svg';
-import Track from './Track';
 
 import './Stream.css';
 
@@ -19,8 +18,12 @@ class Stream extends Component {
       videos: [],
       name: null,
       description: null,
-      playlist: ['aaa', 'bbb', 'ccc', 'ddd', 'eee']
+      currentVideoIndx: 0
     };
+
+    this._open = this._open.bind(this);
+    this._close = this._close.bind(this);
+    this._updateVideoSrc = this._updateVideoSrc.bind(this);
   }
 
   componentDidMount() {
@@ -29,9 +32,8 @@ class Stream extends Component {
         const videos = res.data["videos"];
         const name = res.data["name"];
         const description = res.data["description"];
-        shuffle(videos);
 
-        // console.log(res.data);
+        console.log(res.data);
 
         this.setState({ videos });
         this.setState({ name });
@@ -41,8 +43,23 @@ class Stream extends Component {
         console.log(err);
       });
 
-
   }
+
+
+  _open() {
+    this.sidenav.style.width = "300px";
+  }
+
+  _close() {
+    this.sidenav.style.width = "0";
+  }
+
+
+  _updateVideoSrc(e, videoIndex) {
+    e.preventDefault();
+    this.setState({ currentVideoIndx: videoIndex });
+  }
+
 
   render() {
     const videoJsOptions = {
@@ -57,10 +74,11 @@ class Stream extends Component {
         // src: this.state.videos[0],  // FIXME: This line causes a media playback error. Maybe the resource is not ready
         type: 'video/mp4'
       }],
-      streams: this.state.videos
-
+      streams: this.state.videos,
+      currentVideoIndx: this.state.currentVideoIndx,
 
     };
+
 
     return (
 
@@ -72,9 +90,30 @@ class Stream extends Component {
           <a className="homeBtn" href="/">Home</a>
         </div>
 
-        <div className="view-main">
-          <VideoPlayer {...videoJsOptions} />     
-        </div>
+        <nav ref={node => this.sidenav = node} id="mySidenav" className="sidenav nav flex-column">
+          <h2 className="">Up next</h2>
+          <a className="closebtn" onClick={this._close}>&times;</a>
+          <div className="menuContainer">
+            {this.state.videos.map((obj, index) => {
+              return (
+                <a className="" href="#" onClick={(e) => this._updateVideoSrc(e, index)}>
+                  <img className="scaledImageFitWidth" src={obj.poster} alt={obj.title}></img>
+                  <p>{obj.title} | {obj.videoLength}</p>
+                </a>
+              )
+            })}
+          </div>
+        </nav>
+
+         <div className="view-main">
+          <div className="container-player-chat">
+            <div className="video-player">
+              <a onClick={this._open} className="playlist-schedule">Playlist</a>
+              <VideoPlayer {...videoJsOptions} />
+            </div>         
+          </div>        
+
+         </div>
 
       </div>
     );
