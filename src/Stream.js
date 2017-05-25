@@ -33,7 +33,7 @@ class Stream extends Component {
         const name = res.data["name"];
         const description = res.data["description"];
 
-        console.log(res.data);
+        // console.log(res.data);
 
         this.setState({ videos });
         this.setState({ name });

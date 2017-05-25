@@ -81,7 +81,7 @@ export default class VideoPlayer extends Component {
   _skipToPreviousVideo(e) {
     e.preventDefault();
 
-    console.log(this.state.currentVideoIdx);
+    // console.log(this.state.currentVideoIdx);
 
     if (this.state.currentVideoIdx === 1) {
       return;
