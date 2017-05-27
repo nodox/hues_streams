@@ -28,24 +28,24 @@
 .container-player-chat {
   display: flex;
   flex: 1;
-  border: 5px solid pink;
+  /*border: 5px solid pink;*/
 }
 
 
 .video-player {
   position: relative;
   flex: 1;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 .video-chatbox {
   flex: 0 0 30%;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 .video-playlist {
   /*flex: 0 40px;*/
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 .tracklist {
