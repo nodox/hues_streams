@@ -65,7 +65,7 @@ class Stream extends Component {
     const videoJsOptions = {
       autoplay: true,
       controls: true,
-      muted: true,
+      muted: false,
       fluid: false,
 
       // FIXME: Uses placeholder video as first source. Get straight from FB causes a media playback error.
