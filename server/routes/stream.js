@@ -4,79 +4,82 @@ var Video = require('../models/video');
 
 // FIXME: This will become a database model later on
 // FIXME: Sources can be tags as well; whatever works for queries
-var streams = [
-  {
-    id: 0,
+var streams = {
+  'be-inspired-get-motivated': {
+    id: 'be-inspired-get-motivated',
     name: 'Be Inspired, Get Motivated',
     description: 'Motivational videos on the internet streaming all day.',
     tags: ['inspirational'],
     videos: []
   },
-  {
-    id: 1,
+  '2-min-meals': {
+    id: '2-min-meals',
     name: '2-Min Meals',
     description: 'No time to cook? Get the latest internet cooking recipes in quick 2-min videos.',
     tags: ['cooking'],
     videos: []
   },
-  {
-    id: 2,
+  'ball-is-life': {
+    id: 'ball-is-life',
     name: '#BallisLife',
     description: 'Ball is life? Watch NBA updates all day long with these videos from the web.',
     tags: ['sports'],
     videos: []
-  },  
-  {
-    id: 3,
+  }, 
+  'cute-animals': {
+    id: 'cute-animals',
     name: 'Cute animals',
     description: 'Watch the cutest animals on the web!',
     tags: ['cute_animals'],
     videos: []
   },
-  {
-    id: 4,
+  'the-young-turks': {
+    id: 'the-young-turks',
     name: 'The Young Turks',
     description: 'A new form of internet journalism. Watch latest videos by The Young Turks',
     tags: ['tyt'],
     videos: []
   },
-  {
-    id: 5,
+
+  'buzzfeed-videos-for-days': {
+    id: 'buzzfeed-videos-for-days',
     name: 'Buzzfeed Videos For Days',
     description: 'Trending Buzzfeed videos streaming to your device',
     tags: ['entertainment'],
     videos: []
-  },
-  {
-    id: 6,
+  },  
+
+
+  'news-for-the-black-millennial': {
+    id: 'news-for-the-black-millennial',
     name: 'News for the Black Millennial',
     description: 'Get the latest internet news updates for the Black community.',
     tags: ['news'],
     videos: []
   },
-  {
-    id: 7,
+
+  'memes-memes-memes': {
+    id: 'memes-memes-memes',
     name: 'Memes Memes Memes',
     description: 'The Memes never stop. Watch all the trending memes on the internet. Facts B.',
     tags: ['meme', 'funny'],
     videos: []
   },
-  // {
-  //  id: 8,
-  //  name: 'Natural and Curly Haircare',
-  //  description: 'The latest videos on the web for dealing with curly hair.',
-  //  tags: ['haircare'],
-  //  videos: []
-  // },
-  // {
-  //   id: 9,
+  // 'natural-and-curly-haircare': {
+  //   id: 'natural-and-curly-haircare',
+  //   name: 'Natural and Curly Haircare',
+  //   description: 'The latest videos on the web for dealing with curly hair.',
+  //   tags: ['haircare'],
+  //   videos: []
+  // }, 
+  // 'health-and-fitness-gurus': {
+  //   id: 'health-and-fitness-gurus',
   //   name: 'Health and Fitness Gurus',
   //   description: 'Learn from the best on how to get lean by working out.',
   //   tags: ['workout'],
   //   videos: []
   // },
-];
-
+};
 
 
 router.get('/', function(req, res, next) {

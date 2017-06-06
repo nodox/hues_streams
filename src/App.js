@@ -45,9 +45,11 @@ class App extends Component {
           <p>Select a video stream to watch your favorite videos on the internet.</p>
         </div>
         <div className="category-tiles">
-          {this.state.channels.map(obj => {
-            return <Tile key={obj.id.toString()} url={"/channel/"+obj.id.toString()} title={obj.name} />
-          })}
+          {Object.keys(this.state.channels).map( (key) => {
+              var channel = this.state.channels[key];
+              return <Tile key={channel.id.toString()} url={"/channel/"+key.toString()} title={channel.name.toString()} />
+            }
+          )}
         </div>
       </div>
     );
