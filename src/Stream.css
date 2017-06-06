@@ -2,68 +2,15 @@
   color: #fff;
 }
 
-
-
-.video-app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  align-content: stretch;
+.relative {
+  position: relative;
 }
 
 .header {
-  /*flex: 1 100%;*/
   text-align: center;
   margin-bottom: 10px;
 }
 
-.view-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  /*border: 1px solid blue;*/
-}
-
-
-.container-player-chat {
-  display: flex;
-  flex: 1;
-  /*border: 5px solid pink;*/
-}
-
-
-.video-player {
-  position: relative;
-  flex: 1;
-  /*border: 1px solid red;*/
-}
-
-.video-chatbox {
-  flex: 0 0 30%;
-  /*border: 1px solid red;*/
-}
-
-.video-playlist {
-  /*flex: 0 40px;*/
-  /*border: 1px solid red;*/
-}
-
-.tracklist {
-  display: flex;
-  align-items: stretch;
-  flex-direction: row;
-}
-
-
-
-.playlist-schedule {
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  color: #ffffff !important;
-  z-index: 3;
-  cursor: pointer;
-}
 
 
 .scaledImageFitWidth {
@@ -82,7 +29,7 @@
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 5; /* Stay on top */
+  z-index: 20; /* Stay on top */
   top: 0;
   right: 0;
   background-color: #111; /* Black*/

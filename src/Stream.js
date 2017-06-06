@@ -18,11 +18,11 @@ class Stream extends Component {
       videos: [],
       name: null,
       description: null,
-      currentVideoIndx: 0
+      currentVideoIndx: 0,
     };
 
-    this._open = this._open.bind(this);
-    this._close = this._close.bind(this);
+    this._openSideMenu = this._openSideMenu.bind(this);
+    this._closeSideMenu = this._closeSideMenu.bind(this);
     this._updateVideoSrc = this._updateVideoSrc.bind(this);
   }
 
@@ -46,14 +46,13 @@ class Stream extends Component {
   }
 
 
-  _open() {
-    this.sidenav.style.width = "300px";
-  }
-
-  _close() {
+  _closeSideMenu() {
     this.sidenav.style.width = "0";
   }
 
+  _openSideMenu() {
+    this.sidenav.style.width = "300px";
+  }
 
   _updateVideoSrc(e, videoIndex) {
     e.preventDefault();
@@ -76,13 +75,31 @@ class Stream extends Component {
       }],
       streams: this.state.videos,
       currentVideoIndx: this.state.currentVideoIndx,
+      sideMenuCallback: this._openSideMenu,
 
     };
 
 
     return (
 
-      <div className="video-app">
+      <div className="">
+
+
+      <nav ref={node => this.sidenav = node} id="mySidenav" className="sidenav nav flex-column">
+        <h2 className="">Up next</h2>
+        <a className="closebtn" onClick={this._closeSideMenu}>&times;</a>
+        <div className="menuContainer">
+          {this.state.videos.map((obj, index) => {
+            return (
+              <a key={obj.title} className="" href="#" onClick={(e) => this._updateVideoSrc(e, index)}>
+                <img className="scaledImageFitWidth" src={obj.poster} alt={obj.title}></img>
+                <p>{obj.title} | {obj.videoLength}</p>
+              </a>
+            )
+          })}
+        </div>
+      </nav>
+
         <div className="header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to {this.state.name}</h2>
@@ -90,25 +107,11 @@ class Stream extends Component {
           <a className="homeBtn" href="/">Home</a>
         </div>
 
-        <nav ref={node => this.sidenav = node} id="mySidenav" className="sidenav nav flex-column">
-          <h2 className="">Up next</h2>
-          <a className="closebtn" onClick={this._close}>&times;</a>
-          <div className="menuContainer">
-            {this.state.videos.map((obj, index) => {
-              return (
-                <a className="" href="#" onClick={(e) => this._updateVideoSrc(e, index)}>
-                  <img className="scaledImageFitWidth" src={obj.poster} alt={obj.title}></img>
-                  <p>{obj.title} | {obj.videoLength}</p>
-                </a>
-              )
-            })}
-          </div>
-        </nav>
 
-         <div className="view-main">
-          <div className="container-player-chat">
-            <div className="video-player">
-              <a onClick={this._open} className="playlist-schedule">Playlist</a>
+
+         <div className="container-fluid">
+          <div className="row">
+            <div className="col-12">
               <VideoPlayer {...videoJsOptions} />
             </div>         
           </div>        

@@ -9,12 +9,14 @@ export default class VideoPlayer extends Component {
 
     this.state = {
       currentVideoIdx: this.props.currentVideoIndx,
+      presentSideMenu: false,
     };
 
 
 
     this._skipToNextVideo = this._skipToNextVideo.bind(this);
     this._skipToPreviousVideo = this._skipToPreviousVideo.bind(this);
+    this._sendSideMenuToggleMsg = this._sendSideMenuToggleMsg.bind(this);
 
   }
 
@@ -76,6 +78,12 @@ export default class VideoPlayer extends Component {
   }
 
 
+  _sendSideMenuToggleMsg() {
+
+    let menuState = !this.state.presentSideMenu;
+    this.setState({ presentSideMenu: menuState });
+    this.props.sideMenuCallback();
+  }
 
 
   _skipToPreviousVideo(e) {
@@ -113,10 +121,15 @@ export default class VideoPlayer extends Component {
   // see https://github.com/videojs/video.js/pull/3856
   render() {
     return (
-      <div data-vjs-player className="video-js vjs-big-play-centered">
-        <a onClick={this._skipToNextVideo}><i className="fa fa-chevron-right fa-3x nextVideo"></i></a>
-        <video ref={ node => this.videoNode = node } className=""></video>
-        <a onClick={this._skipToPreviousVideo}><i className="fa fa-chevron-left fa-3x prevVideo"></i></a>
+      <div className="container-player">
+        <div className="html5-video-player">
+          <div data-vjs-player className="html5-video-container video-js vjs-big-play-centered">
+            <a onClick={this._sendSideMenuToggleMsg} className="playlist-schedule">Playlist</a>
+            <a onClick={this._skipToNextVideo}><i className="fa fa-chevron-right fa-3x nextVideo"></i></a>
+            <video ref={ node => this.videoNode = node } className=""></video>
+            <a onClick={this._skipToPreviousVideo}><i className="fa fa-chevron-left fa-3x prevVideo"></i></a>
+          </div>
+        </div>
       </div>
     )
   }
