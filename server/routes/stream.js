@@ -37,7 +37,7 @@ var streams = {
     id: 'news-for-the-black-millennial',
     name: 'News for the Black Millennial',
     description: 'Get the latest internet news updates for the Black community.',
-    tags: ['news'],
+    tags: ['black_millenial_news'],
     videos: []
   },
   'far-right-news': {
