@@ -43,6 +43,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to Project Stream</h2>
           <p>Select a video stream to watch your favorite videos on the internet.</p>
+          <p>Contact us at hello@huesstartup.com</p>
         </div>
         <div className="category-tiles">
           {Object.keys(this.state.channels).map( (key) => {
