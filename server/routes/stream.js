@@ -48,9 +48,9 @@ var streams = {
     videos: []
   },
 
-  'black_womens-fitness': {
-    id: 'black_womens-fitness',
-    name: 'Black Women Fitness',
+  'black-womens-fitness': {
+    id: 'black-womens-fitness',
+    name: 'Women Fitness',
     description: 'Watch womens fitness videos from the web.',
     tags: ['black_womens_fitness'],
     videos: []
