@@ -4,10 +4,8 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import VideoPlayer from './VideoPlayer';
+import VideoPlayer from '../partials/VideoPlayer';
 // import shuffle from 'shuffle-array';
-import logo from './logo.svg';
-
 import './Stream.css';
 
 class Stream extends Component {
@@ -101,7 +99,6 @@ class Stream extends Component {
       </nav>
 
         <div className="header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to {this.state.name}</h2>
           <p>{this.state.description}</p>
         </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Tile from './Tile';
+import Tile from '../partials/Tile';
 
 class Home extends Component {
 
