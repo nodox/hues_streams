@@ -104,7 +104,6 @@ class Stream extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to {this.state.name}</h2>
           <p>{this.state.description}</p>
-          <a className="homeBtn" href="/">Home</a>
         </div>
 
 
