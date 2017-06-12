@@ -3,7 +3,8 @@
 // http://docs.videojs.com/tutorial-react.html
 
 import React, { Component } from 'react';
-// import axios from 'axios';
+import { Redirect } from 'react-router-dom'
+import axios from 'axios';
 // import shuffle from 'shuffle-array';
 
 
@@ -11,20 +12,117 @@ class Auth extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      usernameForLogin: '',
+      passwordForLogin: '',
+
+      usernameForRegister: '',
+      passwordForRegister: '',
+      passwordConfirmationForRegister: '',
+
+      authenticated: false,
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+
+  }
+
+  handleInputChange(event) {
+    event.preventDefault();
+
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    console.log(name, value);
+
+    this.setState({
+      [name]: value
+    });  
+  }
+
+  handleRegisterSubmit(event) {
+    event.preventDefault();
+
+    var formData = {
+      username: this.state.usernameForRegister,
+      password: this.state.passwordForRegister,
+      passwordConfirmation: this.state.passwordConfirmationForRegister
+    };
+
+    axios.post('/api/register', formData)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch( err => {
+        console.log(err);
+      });
+  }
+
+  handleLoginSubmit(event) {
+    event.preventDefault();
+
+    var formData = {
+      username: this.state.usernameForLogin,
+      password: this.state.passwordForLogin
+    };
+
+    axios.post('/api/login', formData)
+      .then(res => {
+        // console.log(res.data);
+        this.setState({ authenticated: res.data.success })
+      })
+      .catch( err => {
+        console.log(err);
+      });
   }
 
 
   render() {
 
-    return (
+    const { authenticated } = this.state;
+    if (authenticated) {
+      return (
+        <Redirect to={'/'} />
+      );
+    }
 
-      <div className="">
-        <div>
-          <p className="">Login</p>
-          <p className="">Register</p>
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-6">
+            <form onSubmit={this.handleRegisterSubmit}>
+              <h6>Create a new account</h6>
+              <div className="form-group">
+                <input onChange={this.handleInputChange} name="usernameForRegister" type="text" className="form-control" id="usernameInput" placeholder="username"/>
+              </div>
+              <div className="form-group">
+                <input onChange={this.handleInputChange} name="passwordForRegister" type="password" className="form-control" id="passwordRegisterInput" placeholder="password"/>
+              </div>
+              <div className="form-group">
+                <input onChange={this.handleInputChange} name="passwordConfirmationForRegister" type="password" className="form-control" id="passwordConfirmationInput" placeholder="password confirmation"/>
+              </div>
+              <input type="submit" className="btn btn-primary" value="Submit" />
+            </form>
+
+          </div>
+          <div className="col-sm-6">
+            <form onSubmit={this.handleLoginSubmit}>
+              <h6>Login</h6>
+              <div className="form-group">
+                <input onChange={this.handleInputChange} name="usernameForLogin" type="text" className="form-control" id="usernameLoginInput" placeholder="username"/>
+              </div>
+              <div className="form-group">
+                <input onChange={this.handleInputChange} name="passwordForLogin" type="password" className="form-control" id="passwordLoginInput" placeholder="password"/>
+              </div>
+              <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
     );
+
   }
 
 }

@@ -4,14 +4,22 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var index = require('./routes/index');
 var stream = require('./routes/stream');
+var auth = require('./routes/auth');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
+var User = require('./models/user');
+var bluebird = require('bluebird');
 var mongoose = require('mongoose');
+mongoose.Promise = bluebird;
 mongoose.connect('mongodb://localhost:27017/hues-stream'); // connect to our database
 
 var app = express();
+// app.use(connect());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,12 +31,27 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ 
+  resave: true,
+  saveUninitialized: true,
+  secret: 'Cpu}88W!|^Fq}@y' 
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport config
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 // app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/api', auth);
 app.use('/api/stream', stream);
 
 // Always return the main index.html, so react-router render the route in the client

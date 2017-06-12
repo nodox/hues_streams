@@ -31,7 +31,6 @@ class Home extends Component {
         <div className="header">
           <h2>Welcome to Project Stream</h2>
           <p>Select a video stream to watch your favorite videos on the internet.</p>
-          <p>Contact us at hello@huesstartup.com</p>
         </div>
 
 
