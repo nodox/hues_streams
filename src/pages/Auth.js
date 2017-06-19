@@ -3,10 +3,10 @@
 // http://docs.videojs.com/tutorial-react.html
 
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import * as AuthService from '../utils/AuthService';
 // import shuffle from 'shuffle-array';
-
 
 class Auth extends Component {
   constructor(props) {
@@ -31,11 +31,9 @@ class Auth extends Component {
 
   handleInputChange(event) {
     event.preventDefault();
-
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log(name, value);
 
     this.setState({
       [name]: value
@@ -53,7 +51,12 @@ class Auth extends Component {
 
     axios.post('/api/register', formData)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
+        AuthService.setAccessToken(res.data.token);
+
+        // this.setState({ authenticated: res.data.success });
+        this.props.history.push('/'); // works for redirect
+
       })
       .catch( err => {
         console.log(err);
@@ -70,8 +73,9 @@ class Auth extends Component {
 
     axios.post('/api/login', formData)
       .then(res => {
-        // console.log(res.data);
-        this.setState({ authenticated: res.data.success })
+        console.log(res.data);
+        AuthService.setAccessToken(res.data.token);
+        this.props.history.push('/'); 
       })
       .catch( err => {
         console.log(err);
@@ -80,13 +84,6 @@ class Auth extends Component {
 
 
   render() {
-
-    const { authenticated } = this.state;
-    if (authenticated) {
-      return (
-        <Redirect to={'/'} />
-      );
-    }
 
     return (
       <div className="container">

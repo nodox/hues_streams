@@ -1,25 +1,35 @@
+require('dotenv').config()
+
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
 
 var index = require('./routes/index');
 var stream = require('./routes/stream');
 var auth = require('./routes/auth');
+
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
 
 var User = require('./models/user');
 var bluebird = require('bluebird');
 var mongoose = require('mongoose');
+
+
+
+
+// use helmet npm module
+
 mongoose.Promise = bluebird;
 mongoose.connect('mongodb://localhost:27017/hues-stream'); // connect to our database
 
 var app = express();
-// app.use(connect());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,17 +41,42 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ 
-  resave: true,
-  saveUninitialized: true,
-  secret: 'Cpu}88W!|^Fq}@y' 
-}));
+
 
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 // passport config
+var jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeader(),
+  secretOrKey: 'MfOeztReRBp93olho7Yb',
+  algorithms: "HS256",
+  // issuer: "accounts.examplesoft.com",
+  // audience: "yoursite.net",
+}
+// Check issued JWT token against these parameters
+
 passport.use(new LocalStrategy(User.authenticate()));
+
+passport.use(new JwtStrategy(jwtOptions, (jwt_payload, done) => {
+
+  // check that its not expired
+  // check ...
+
+  User.findOne({id: jwt_payload.sub}, function(err, user) {
+    if (err) {
+        return done(err, false);
+    }
+    if (user) {
+        return done(null, user);
+    } else {
+        return done(null, false);
+        // or you could create a new account
+    }
+  });
+}));
+
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
