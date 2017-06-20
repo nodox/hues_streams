@@ -29,8 +29,16 @@ router.post('/register', function(req, res) {
       return res.status(400).send(err);
     }
 
-    passport.authenticate('local', {session: false}, function(req, res) {
-      return res.status(200).send(userName);
+    var tokenData = jwt.sign({ 
+      sub: userName,
+    }, SECRET, {
+      expiresIn: '1h',
+      algorithm: 'HS256',
+    });
+
+    return res.status(200).send({
+      success: true,
+      token: tokenData
     });
   });
 });
