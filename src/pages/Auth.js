@@ -13,6 +13,7 @@ class Auth extends Component {
     super(props);
 
     this.state = {
+      userEmailForRegister: '',
       usernameForLogin: '',
       passwordForLogin: '',
 
@@ -44,6 +45,7 @@ class Auth extends Component {
     event.preventDefault();
 
     var formData = {
+      email: this.state.userEmailForRegister,
       username: this.state.usernameForRegister,
       password: this.state.passwordForRegister,
       passwordConfirmation: this.state.passwordConfirmationForRegister
@@ -91,6 +93,9 @@ class Auth extends Component {
           <div className="col-sm-6">
             <form onSubmit={this.handleRegisterSubmit}>
               <h6>Create a new account</h6>
+              <div className="form-group">
+                <input onChange={this.handleInputChange} name="userEmailForRegister" type="email" className="form-control" id="usernameInput" placeholder="email" required/>
+              </div>
               <div className="form-group">
                 <input onChange={this.handleInputChange} name="usernameForRegister" type="text" className="form-control" id="usernameInput" placeholder="username"/>
               </div>
