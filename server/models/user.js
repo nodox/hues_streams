@@ -2,24 +2,28 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
+var validator = require('validator');
 
-var User = new Schema({});
 
-User.plugin(passportLocalMongoose);
+const toLower = (str) => {
+  return str.toLowerCase();
+}
+
+var User = new Schema({
+  email: {
+    type: 'string',
+    set: toLower,
+    required: true,
+    index: { unique: true},
+    validate: function(val) {
+      return validator.isEmail(val)
+    },
+    message: 'invalid email',
+    default: null,
+  },
+});
+
+User.plugin(passportLocalMongoose);  // Note: username/password field created by plugin
 User.plugin(uniqueValidator);
-
-
-
-// methods ======================
-// generating a hash
-// userSchema.methods.generateHash = function(password) {
-//     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-// };
-
-// // checking if password is valid
-// userSchema.methods.validPassword = function(password) {
-//     return bcrypt.compareSync(password, this.local.password);
-// };
-
 
 module.exports = mongoose.model('User', User);

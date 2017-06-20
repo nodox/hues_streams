@@ -12,7 +12,12 @@ router.post('/register', function(req, res) {
     return res.status(400).send('Passwords do not match');
   }
 
-  User.register(new User({ username : req.body.username }), req.body.password, function(err, user) {
+  var userOptions = {
+    username: req.body.username,
+    email: req.body.email,
+  };
+
+  User.register(new User(userOptions), req.body.password, function(err, user) {
     if (err) {
       return res.status(400).send(err);
     }
