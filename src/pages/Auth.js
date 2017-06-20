@@ -57,7 +57,7 @@ class Auth extends Component {
         AuthService.setAccessToken(res.data.token);
 
         // this.setState({ authenticated: res.data.success });
-        this.props.history.push('/'); // works for redirect
+        this.props.history.push('/dashboard'); // works for redirect
 
       })
       .catch( err => {
@@ -77,7 +77,7 @@ class Auth extends Component {
       .then(res => {
         console.log(res.data);
         AuthService.setAccessToken(res.data.token);
-        this.props.history.push('/'); 
+        this.props.history.push('/dashboard'); 
       })
       .catch( err => {
         console.log(err);
