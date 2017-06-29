@@ -3,6 +3,7 @@
 // http://docs.videojs.com/tutorial-react.html
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 
 import './Tile.css';
@@ -22,11 +23,11 @@ class Tile extends Component {
 
     //  Get from google new tab
     return (
-      <a className="category-tile" href={this.props.url}>
+      <Link to={this.props.url} className="category-tile">
         <div className="category-title">
           <span>{this.props.title}</span>
         </div>
-      </a>
+      </Link>
     );
   }
 }

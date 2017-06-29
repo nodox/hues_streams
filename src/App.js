@@ -1,57 +1,28 @@
 import React, { Component } from 'react';
-// import Link from 'react-router-dom';
-import axios from 'axios';
-import logo from './logo.svg';
+import Header from './partials/Header';
+import { Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import Auth from './pages/Auth';
+import Stream from './pages/Stream';
+import Dashboard from './pages/Dashboard'; 
+import ProtectedRoute from './routes/ProtectedRoute';
+
 import './App.css';
-import Tile from './Tile';
-
-
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      channels: [],
-    };
-  }
-
-  componentDidMount() {
-    axios.get('/api/stream')
-      .then(res => {
-        // const posts = res.data.data.children.map(obj => obj.data);
-        // this.setState({ posts });
-        const channels = res.data;
-
-        // console.log(res.data);
-
-        this.setState({ channels });
-
-      })
-      .catch( err => {
-        console.log(err);
-      });
-
-
-  }
-
   render() {
     return (
-      <div className="App">
-        <div className="header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Project Stream</h2>
-          <p>Select a video stream to watch your favorite videos on the internet.</p>
-          <p>Contact us at hello@huesstartup.com</p>
-        </div>
-        <div className="category-tiles">
-          {Object.keys(this.state.channels).map( (key) => {
-              var channel = this.state.channels[key];
-              return <Tile key={channel.id.toString()} url={"/channel/"+key.toString()} title={channel.name.toString()} />
-            }
-          )}
-        </div>
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/register" component={Auth} />
+          <Route exact path="/channel/:id" component={Stream} />
+          <ProtectedRoute exact path="/dashboard" component={Dashboard} redirectTo='/register' />  
+        </Switch> 
       </div>
     );
   }
